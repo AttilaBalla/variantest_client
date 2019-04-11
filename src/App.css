@@ -1,3 +1,9 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
 .App {
   text-align: center;
   background-color: #282c34;
@@ -9,5 +15,13 @@
   color: white;
   background-color: #27272b;
   margin-bottom: 2px;
+}
+
+.container {
+    margin-top: 1rem;
+}
+
+.w-15 {
+    width: 15%;
 }
 
