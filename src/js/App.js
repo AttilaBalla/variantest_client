@@ -14,11 +14,16 @@ class App extends Component {
         this.state = {
             status: "",
             servers: [],
-        }
+        };
+
+        this.getServers = this.getServers.bind(this);
     }
 
     componentDidMount() {
+        this.getServers();
+    }
 
+    getServers() {
         this.setState({
             status: REQUEST_STATUS.PENDING
         });
@@ -49,9 +54,11 @@ class App extends Component {
 
         return (
             <div className="App">
-                <NavBar/>
+                <NavBar refreshServerList={this.getServers}/>
                 <div className="container">
-                    {(this.state.status === REQUEST_STATUS.PENDING) ? <LoadingIndicator/> : content}
+                    {(this.state.status === REQUEST_STATUS.PENDING)
+                        ? <LoadingIndicator text={"Retrieving server list..."}/>
+                        : content}
                 </div>
             </div>
         );
