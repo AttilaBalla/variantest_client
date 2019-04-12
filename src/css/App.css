@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.App {
+    text-align: center;
+    background-color: #282c34;
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    margin-top: 1rem;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

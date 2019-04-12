@@ -1,0 +1,11 @@
+.list-group-item {
+    height: 4rem;
+    background-color: #171b22;
+
+}
+
+.list-group-item-disabled {
+    color: gray;
+    background-color: #1f232a;
+    border: none;
+}
