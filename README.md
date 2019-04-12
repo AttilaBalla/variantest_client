@@ -8,3 +8,5 @@ Servers with the status "Down" have a clear visual identification and actions wo
 
 The application is currently not hosted on any platform, it can be viewed in a local environment by downloading 
 the repository and running ```npm start``` in the main folder.
+
+The backend API for this project can be found here: https://github.com/AttilaBalla/variantest_server
