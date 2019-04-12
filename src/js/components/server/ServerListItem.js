@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {REQUEST_STATUS, SERVER_STATUS} from "../../utilities/constants";
 import {checkoutOrRelease} from "../../utilities/httpService";
+import {LoadingIndicator} from "../LoadingIndicator";
 
 export class ServerListItem extends Component {
 
@@ -17,9 +18,16 @@ export class ServerListItem extends Component {
     }
 
     handleCheckout() {
+
+        this.setState({
+            requestStatus: REQUEST_STATUS.PENDING
+        });
+
         checkoutOrRelease(this.props.serverId)
+
             .then((result) => {
                 this.setState({
+                    requestStatus: REQUEST_STATUS.DONE,
                     serverStatus: SERVER_STATUS.CHECKED_OUT
                 });
             })
@@ -29,9 +37,15 @@ export class ServerListItem extends Component {
     }
 
     handleRelease() {
+
+        this.setState({
+            requestStatus: REQUEST_STATUS.PENDING
+        });
+
         checkoutOrRelease(this.props.serverId)
             .then((result) => {
                 this.setState({
+                    requestStatus: REQUEST_STATUS.DONE,
                     serverStatus: SERVER_STATUS.AVAILABLE
                 });
             })
@@ -55,8 +69,10 @@ export class ServerListItem extends Component {
             button = <button
                         type="button"
                         className="btn btn-outline-primary"
-                        onClick={this.handleCheckout}>
-                        Check Out
+                        onClick={this.handleCheckout}
+                        disabled={(this.state.requestStatus === REQUEST_STATUS.PENDING)}>
+                        {(this.state.requestStatus === REQUEST_STATUS.PENDING)
+                            ? <LoadingIndicator/> : "Check Out"}
                     </button>;
             statusClass = "";
 
@@ -66,8 +82,10 @@ export class ServerListItem extends Component {
             button = <button
                         type="button"
                         className="btn btn-outline-warning"
-                        onClick={this.handleRelease}>
-                        Release
+                        onClick={this.handleRelease}
+                        disabled={(this.state.requestStatus === REQUEST_STATUS.PENDING)}>
+                        {(this.state.requestStatus === REQUEST_STATUS.PENDING)
+                            ? <LoadingIndicator/> : "Release"}
                     </button>;
 
             statusClass = "text-warning"

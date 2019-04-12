@@ -1,10 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../css/LoadingIndicator.css';
 
-export function LoadingIndicator() {
+export function LoadingIndicator(props) {
     return (
-        <h5>
-            <i className="fas fa-cog mr-2 loading"/>Retrieving Server List...
-        </h5>
+        <span>
+            <i className="fas fa-cog mr-2 loading"/>{props.text}
+        </span>
     )
 }
+
+LoadingIndicator.propTypes = {
+    text: PropTypes.string
+};
+
+LoadingIndicator.defaultProps = {
+    text: "Loading..."
+};
